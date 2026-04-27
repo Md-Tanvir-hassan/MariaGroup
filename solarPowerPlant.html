@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Power Plant - Maria Groups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            background-color: #e3f1ff;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #0066cc;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #495057;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 8px;
+            top: 100%;
+            margin-top: 0;
+            z-index: 1000;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #495057;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            border-left: 3px solid transparent;  
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: #0066cc;
+            border-left-color: #004ecc;
+            padding-left: 24px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.65rem;
+            margin-left: 4px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ffa000 0%, #f57c00 100%);
+            color: white;
+            padding: 180px 3rem 120px;
+            text-align: center;
+            margin-top: 76px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '☀️';
+            position: absolute;
+            font-size: 40rem;
+            opacity: 0.05;
+            top: -10rem;
+            right: -10rem;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 3rem;
+        }
+
+        .project-overview {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+            border-top: 5px solid #ffa000;
+        }
+
+        .project-overview h2 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .overview-item {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .overview-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .overview-value {
+            font-size: 1.8rem;
+            color: #f57c00;
+            font-weight: 700;
+        }
+
+        .stats-banner {
+            background: linear-gradient(135deg, #ffa000 0%, #f57c00 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .stats-banner h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.95;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: #6c757d;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        .context-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+        }
+
+        .context-section h3 {
+            font-size: 2rem;
+            color: #ffa000;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .context-section p {
+            font-size: 1.1rem;
+            color: #495057;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .goals-list {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #ffa000;
+            margin-top: 2rem;
+        }
+
+        .goals-list h4 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .goals-list ul {
+            padding-left: 1.5rem;
+        }
+
+        .goals-list li {
+            font-size: 1.05rem;
+            color: #495057;
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .benefits-section {
+            margin: 5rem 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            border-top: 4px solid #ffa000;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .benefit-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #ffa000 0%, #f57c00 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            font-size: 1.05rem;
+            color: #495057;
+            line-height: 1.8;
+        }
+
+        .technical-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .technical-card {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 5px solid #ffa000;
+        }
+
+        .technical-card h4 {
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .technical-card p {
+            font-size: 1rem;
+            color: #495057;
+            line-height: 1.8;
+        }
+
+        .impact-section {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            padding: 4rem 3rem;
+            border-radius: 12px;
+            margin: 4rem 0;
+        }
+
+        .impact-section h2 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .impact-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .impact-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .impact-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .impact-emoji {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .impact-card h4 {
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+        }
+
+        .impact-card p {
+            font-size: 1rem;
+            color: #6c757d;
+            line-height: 1.8;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #ffa000 0%, #f57c00 100%);
+            color: white;
+            padding: 5rem 3rem;
+            text-align: center;
+            border-radius: 12px;
+            margin: 4rem auto;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: white;
+            color: #f57c00;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #e9ecef;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #adb5bd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #0066cc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #343a40;
+            color: #adb5bd;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 140px 1.5rem 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+
+            .overview-grid,
+            .stats-grid,
+            .benefits-grid,
+            .technical-grid,
+            .impact-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <header>
+        <nav>
+            <div class="logo">Maria <span>Groups</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About Us</a>
+                    <div class="dropdown-content">
+                        <a href="speech from chairman.html">Speech from Chairman</a>
+                        <a href="speech from md.html">Speech from MD</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#works">Portfolio</a>
+                    <div class="dropdown-content">
+                        <a href="bnsProject.html">BNS PROJECT</a>
+                        <a href="globalBusinessProject.html">GLOBAL BUSINESS</a>
+                        <a href="humanitarianProject.html">HUMANITARIAN INITIATIVE</a>
+                        <a href="jicaProject.html">JICA PROJECT</a>
+                        <a href="schoolFeedingProgram.html">SCHOOL FEEDING PROGRAM</a>
+                        <a href="solarPowerPlant.html">SOLAR POWER PLANT</a>
+                    </div>
+                </li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>A New Solar Landmark in Cox's Bazar</h1>
+                <p>Maria Groups' 70 MW Solar Power Plant at Chakaria</p>
+                <p class="subtitle">Maria Groups' Strategic Contribution to expand solar power capacity</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="project-overview">
+                <h2>Project Overview</h2>
+                <p style="font-size: 1.15rem; color: #495057; line-height: 1.9; margin-bottom: 2rem;">
+                    In its latest push for sustainable energy, Bangladesh aims to significantly expand its solar power capacity. Among several major solar tenders issued, a standout proposal is for a 70 MW solar power plant to be sited in Chakaria, Cox's Bazar. The undertaking—planned by Maria Groups—promises to be a key contributor to the region's renewable energy infrastructure, aligning with national and global goals for clean power.
+                </p>
+
+                <div class="overview-grid">
+                    <div class="overview-item">
+                        <div class="overview-label">Capacity</div>
+                        <div class="overview-value">70 MW</div>
+                    </div>
+                    <div class="overview-item">
+                        <div class="overview-label">Location</div>
+                        <div class="overview-value">Chakaria</div>
+                    </div>
+                    <div class="overview-item">
+                        <div class="overview-label">Developer</div>
+                        <div class="overview-value">Maria Groups</div>
+                    </div>
+                    <div class="overview-item">
+                        <div class="overview-label">Status</div>
+                        <div class="overview-value">Under Construction</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="stats-banner">
+                <h2>National Solar Initiative</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">1.78 GW</div>
+                        <div class="stat-label">Total Solar Tender</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">19</div>
+                        <div class="stat-label">Locations</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">4</div>
+                        <div class="stat-label">70 MW Plants</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">100 MW Plants</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="context-section">
+                <h3>National Context and Significance</h3>
+                <p>
+                    Bangladesh has recently moved to issue large tenders for grid-connected solar power plants, aiming to add nearly 1.78 gigawatts (GW) of solar capacity at multiple sites. The tender includes four 70 MW plants (including Chakaria) and fifteen 100 MW plants spread across various districts.
+                </p>
+                <p>
+                    Chakaria's location in Cox's Bazar is strategic due to solar radiation levels, relatively flat lands, and increasing energy demand in the southeastern region.
+                </p>
+
+                <div class="goals-list">
+                    <h4>Government's Broader Ambitions:</h4>
+                    <ul>
+                        <li>Expanding renewable energy in the generation mix</li>
+                        <li>Reducing dependency on fossil fuels</li>
+                        <li>Meeting climate targets and international commitments</li>
+                        <li>Strengthening energy security, particularly in vulnerable coastal and off-grid regions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2>Technical & Economic Considerations</h2>
+                    <p>
+                        Detailed project planning covers multiple aspects to ensure successful implementation and operation
+                    </p>
+                </div>
+
+                <div class="technical-grid">
+                    <div class="technical-card">
+                        <h4>🌍 Site Selection</h4>
+                        <p>Ensuring minimal shading, stable land, local infrastructure (roads, accessibility), and proximity to grid substations to reduce transmission losses and costs.</p>
+                    </div>
+
+                    <div class="technical-card">
+                        <h4>🏞️ Land Use & Acquisition</h4>
+                        <p>Acquiring sufficient land with negotiations involving local landowners, environmental clearance, and minimal resettlement impact.</p>
+                    </div>
+
+                    <div class="technical-card">
+                        <h4>⚙️ Technology</h4>
+                        <p>Photovoltaic (PV) panels (mono- or poly-crystalline), inverters, mounting structures, and balance-of-system components with focus on efficiency and durability.</p>
+                    </div>
+
+                    <div class="technical-card">
+                        <h4>🔌 Grid Connection</h4>
+                        <p>Substation connectivity to tie the plant to the national grid, ensuring voltage regulation and system stability.</p>
+                    </div>
+
+                    <div class="technical-card">
+                        <h4>💰 Financing & Tariffs</h4>
+                        <p>Power Purchase Agreement (PPA) with BPDB over 20 years at a fixed rate per kWh, with funding from equity, loans, and international climate funds.</p>
+                    </div>
+
+                    <div class="technical-card">
+                        <h4>🌱 Environmental Impact</h4>
+                        <p>Minimizing impact on flora, fauna, and water drainage while addressing local concerns and creating employment opportunities.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="benefits-section">
+                <div class="section-header">
+                    <h2>Expected Benefits</h2>
+                    <p>
+                        The 70 MW solar power plant will deliver significant environmental, economic, and social benefits to the region
+                    </p>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">♻️</div>
+                        <h4>Clean Energy Generation</h4>
+                        <p>The plant will offset greenhouse gas emissions compared to fossil fuel generation, contributing to a cleaner environment.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">⚡</div>
+                        <h4>Local Energy Supply</h4>
+                        <p>Boost electricity availability and stability in the Cox's Bazar region, possibly reducing load shedding.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💼</div>
+                        <h4>Economic Development</h4>
+                        <p>Job creation during construction and for operations/maintenance, plus business opportunities for local suppliers.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💵</div>
+                        <h4>Cost Savings</h4>
+                        <p>Once established, solar power has low variable cost; PPA helps stabilize electricity prices over the long term.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌍</div>
+                        <h4>Climate Change Mitigation</h4>
+                        <p>Contributes toward national renewable energy goals, reducing carbon intensity and supporting climate frameworks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="impact-section">
+                <h2>Regional & National Impact</h2>
+                <div class="impact-cards">
+                    <div class="impact-card">
+                        <div class="impact-emoji">🏭</div>
+                        <h4>Energy Security</h4>
+                        <p>Strengthening power supply in southeastern Bangladesh</p>
+                    </div>
+
+                    <div class="impact-card">
+                        <div class="impact-emoji">📈</div>
+                        <h4>Sustainable Growth</h4>
+                        <p>Driving socio-economic development in Cox's Bazar</p>
+                    </div>
+
+                    <div class="impact-card">
+                        <div class="impact-emoji">🌱</div>
+                        <h4>Green Transition</h4>
+                        <p>Key step in Bangladesh's renewable energy journey</p>
+                    </div>
+
+                    <div class="impact-card">
+                        <div class="impact-emoji">👥</div>
+                        <h4>Community Benefits</h4>
+                        <p>Local employment and stakeholder engagement</p>
+                    </div>
+                </div>
+            </section>
+
+            <div class="cta-section">
+                <h2>Powering a Sustainable Future</h2>
+                <p>
+                    The proposal by Maria Groups for a 70 MW solar power plant in Chakaria is a promising development in Bangladesh's transition toward renewable energy. If successfully implemented, it will not only deliver environmental benefits and clean electricity but also help drive socio-economic growth in the region.
+                </p>
+                <a href="contact.html" class="btn">Learn More About Our Energy Projects</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Maria Groups</h3>
+                <p>Leading the industry in construction excellence and innovative development solutions since 1999.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="#works">Portfolio</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#renewable">Renewable Energy</a>
+                <a href="#solar">Solar Power</a>
+                <a href="#infrastructure">Infrastructure</a>
+                <a href="#development">Sustainable Development</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@maria-groups.com</p>
+                <p>Phone: +880 1711-336550</p>
+                <p>Website: www.maria.groups.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Maria | "CopyRight@" MariaGroups</p>
+        </div>
+    </footer>
+</body>
+</html>

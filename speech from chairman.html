@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message from Chairman - MARIA GROUPS</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            background-color: #e3f1ff;
+        }
+
+        .logo-section {
+            text-align: left;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: 0.5px;
+        }
+
+        .logo span {
+            color: #0066cc;
+        }
+
+        .tagline {
+            font-size: 0.85rem;
+            color: #6c757d;
+            font-weight: 400;
+            margin-top: 2px;
+        }
+
+        nav a {
+            color: #495057;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        .breadcrumb {
+            background: #ffffff;
+            padding: 1.5rem 3rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        .breadcrumb-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb a {
+            color: #0066cc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .breadcrumb a:hover {
+            color: #004a99;
+        }
+
+        .breadcrumb span {
+            color: #6c757d;
+            margin: 0 0.5rem;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            color: white;
+            padding: 4rem 3rem;
+            text-align: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        .content-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 3rem;
+        }
+
+        .message-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        .profile-section {
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 3rem;
+            padding: 3rem;
+            align-items: start;
+        }
+
+        .profile-image-container {
+            position: relative;
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1rem;
+            text-align: center;
+            padding: 2rem;
+            border: 0px dashed #adb5bd;
+            overflow: hidden;
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .profile-info {
+            margin-top: 1.5rem;
+            text-align: center;
+        }
+
+        .profile-name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-title {
+            font-size: 1.1rem;
+            color: #0066cc;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .profile-company {
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+
+        .message-content {
+            padding-right: 2rem;
+        }
+
+        .message-intro {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .message-text {
+            font-size: 1.05rem;
+            color: #495057;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+
+        .quote-box {
+            background: #f8f9fa;
+            border-left: 4px solid #0066cc;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 4px;
+        }
+
+        .quote-box p {
+            font-size: 1.15rem;
+            color: #2c3e50;
+            font-style: italic;
+            margin: 0;
+        }
+
+        .signature-section {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e9ecef;
+        }
+
+        .signature {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.3rem;
+        }
+
+        .signature-title {
+            font-size: 1rem;
+            color: #6c757d;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin: 3rem 0 2rem;
+            padding: 12px 30px;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-button:hover {
+            background: #004a99;
+            transform: translateY(-2px);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #e9ecef;
+            padding: 3rem 3rem 1.5rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #0066cc;
+        }
+
+        .footer-brand {
+            color: #adb5bd;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 968px) {
+            .profile-section {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .message-content {
+                padding-right: 0;
+            }
+
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+
+            .content-section {
+                padding: 0 1.5rem;
+            }
+
+            .profile-section {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-section">
+                <div class="logo">Maria <span>Groups</span></div>
+                <div class="tagline">From Source To Solution</div>
+            </div>
+            <a href="index.html">← Back to Home</a>
+        </nav>
+    </header>
+
+    <div class="breadcrumb">
+        <div class="breadcrumb-container">
+            <a href="index.html">Home</a>
+            <span>›</span>
+            <a href="#">About Us</a>
+            <span>›</span>
+            <span style="color: #1a1a1a; font-weight: 500;">Chairman's Message</span>
+        </div>
+    </div>
+
+    <section class="hero-section">
+        <h1>Message from Chairman</h1>
+        <p>Visionary Leadership Guiding Maria Groups</p>
+    </section>
+
+    <div class="content-section">
+        <div class="message-container">
+            <div class="profile-section">
+                <div>
+                    <div class="profile-image-container">
+                        <div class="profile-image">
+                            <img src="img/chairman.jpeg" alt="chairman">
+                            <!-- <img src="path/to/chairman-photo.jpg" alt="Chairman"> -->
+                            <!-- <p>Chairman<br>Photo Placeholder<br><br><em>Replace with actual image</em></p> -->
+                        </div>
+                    </div>
+                    <div class="profile-info">
+                        <div class="profile-name">[SYED MOAZZEM HOSSAIN ALAL]</div>
+                        <div class="profile-title">Chairman</div>
+                        <div class="profile-company">Maria Groups</div>
+                    </div>
+                </div>
+
+                <div class="message-content">
+                    <p class="message-intro">
+                        To Our Dedicated Team, Trusted Partners, and Cherished Friends,
+                    </p>
+
+                    <p class="message-text">
+                        It is both an honor and a responsibility to address you at a time when our organization stands as a proven leader in business—driven by opportunity, powered by innovation, and guided by a clear sense of purpose.
+                    </p>
+
+                    <p class="message-text">
+                        At Maria Groups, we believe that true progress begins with people. A respectful, inclusive, and growth-oriented work environment is not just a corporate policy—it is our foundation. We are committed to nurturing a culture where every voice matters, every contribution counts, and every individual is empowered to thrive. The strength of our people defines the strength of our company.
+                    </p>
+
+                    <p class="message-text">
+                        We are also deeply aware of the larger ecosystem in which we operate. Bangladesh is on a promising path of economic transformation, driven by innovation, industrial diversification, and a vibrant entrepreneurial spirit. As proud contributors to this journey, Maria Groups continues to expand its presence across sectors—from agriculture to technology, from logistics to infrastructure—with a clear focus on value creation and sustainability.
+                    </p>
+
+                    <div class="quote-box">
+                        <p>"Success must never be one-dimensional. Our vision extends beyond profit margins and market share. We believe in doing business with conscience, in creating impact with integrity."</p>
+                    </div>
+
+                    <p class="message-text">
+                        But success must never be one-dimensional. Our vision extends beyond profit margins and market share. We believe in doing business with conscience, in creating impact with integrity. Whether through our work in rural communities, food security programs, or green energy projects, we are committed to being a responsible force for good—both locally and globally.
+                    </p>
+
+                    <p class="message-text">
+                        To our employees, I encourage you to be fearless in your ambitions and grounded in your values. To our clients and partners, I extend sincere thanks for your trust and collaboration. And to our broader community, I reaffirm our pledge to stand by the principles of fairness, transparency, and shared progress.
+                    </p>
+
+                    <p class="message-text">
+                        Let us continue this journey together—with bold vision, compassionate leadership, and a relentless pursuit of excellence.
+                    </p>
+
+                    <div class="signature-section">
+                        <div class="signature">With warm regards,</div>
+                        <div class="signature">[SYED MOAZZEM HOSSAIN ALAL]</div>
+                        <div class="signature-title">Chairman, Maria Groups</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-button">← Back to Home</a>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                Maria | "CopyRight@" MariaGroups
+            </div>
+            <div class="footer-links">
+                <a href="home.html">Home</a>
+                <a href="#">Insights</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

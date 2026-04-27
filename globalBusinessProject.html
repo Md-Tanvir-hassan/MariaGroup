@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Business - Maria Enterprise</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            background-color: #e3f1ff;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #0066cc;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #495057;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 8px;
+            top: 100%;
+            margin-top: 0;
+            z-index: 1000;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #495057;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            border-left: 3px solid transparent;  
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: #0066cc;
+            border-left-color: #004ecc;
+            padding-left: 24px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.65rem;
+            margin-left: 4px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            color: white;
+            padding: 180px 3rem 120px;
+            text-align: center;
+            margin-top: 76px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 3rem;
+        }
+
+        .mission-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 5rem;
+            border-left: 5px solid #0066cc;
+        }
+
+        .mission-box h2 {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .mission-box p {
+            font-size: 1.15rem;
+            color: #495057;
+            line-height: 1.9;
+            font-style: italic;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: #6c757d;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        .partners-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .partner-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+            border-top: 4px solid #0066cc;
+        }
+
+        .partner-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .partner-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .partner-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+        }
+
+        .partner-country {
+            font-size: 0.95rem;
+            color: #0066cc;
+            font-weight: 600;
+        }
+
+        .regions-text {
+            text-align: center;
+            font-size: 1.15rem;
+            color: #495057;
+            margin-top: 2rem;
+            line-height: 1.9;
+        }
+
+        .products-section {
+            background: #f8f9fa;
+            padding: 5rem 3rem;
+            margin: 4rem 0;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 3rem auto 0;
+        }
+
+        .product-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .product-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .product-card p {
+            font-size: 1rem;
+            color: #6c757d;
+            line-height: 1.8;
+        }
+
+        .why-choose {
+            max-width: 1200px;
+            margin: 5rem auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+        }
+
+        .feature-check {
+            color: #0066cc;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 1.05rem;
+            color: #495057;
+            font-weight: 500;
+        }
+
+        .quality-section {
+            background: white;
+            padding: 4rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 4rem 0;
+        }
+
+        .quality-section h2 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+
+        .quality-section p {
+            font-size: 1.1rem;
+            color: #495057;
+            line-height: 1.9;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-text {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+            margin: 2rem 0;
+        }
+
+        .highlight-text p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            color: white;
+            padding: 5rem 3rem;
+            text-align: center;
+            border-radius: 12px;
+            margin: 4rem auto;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: white;
+            color: #0066cc;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #e9ecef;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #adb5bd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #0066cc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #343a40;
+            color: #adb5bd;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 140px 1.5rem 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+
+            .partners-grid,
+            .products-grid,
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <header>
+        <nav>
+            <div class="logo">Maria <span>Groups</span></div>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About Us</a>
+                    <div class="dropdown-content">
+                        <a href="speech from chairman.html">Speech from Chairman</a>
+                        <a href="speech from md.html">Speech from MD</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#works">Portfolio</a>
+                    <div class="dropdown-content">
+                        <a href="bnsProject.html">BNS PROJECT</a>
+                        <a href="globalBusinessProject.html">GLOBAL BUSINESS</a>
+                        <a href="humanitarianProject.html">HUMANITARIAN INITIATIVE</a>
+                        <a href="jicaProject.html">JICA PROJECT</a>
+                        <a href="schoolFeedingProgram.html">SCHOOL FEEDING PROGRAM</a>
+                        <a href="solarPowerPlant.html">SOLAR POWER PLANT</a>
+                    </div>
+                </li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Maria Enterprise – Your Trusted Global Export & Import Partner</h1>
+                <p>At Maria Enterprise, we don't just trade—we build bridges between continents.</p>
+                <p class="subtitle">A proud concern of Maria Groups</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="mission-box">
+                <h2>Our Mission</h2>
+                <p>
+                    To contribute to global food security while delivering value through ethical sourcing, sustainable farming, and world-class logistics.
+                </p>
+            </div>
+
+            <section>
+                <div class="section-header">
+                    <h2>Global Presence – A Network You Can Trust</h2>
+                    <p>
+                        From Bangladesh to the USA, the Middle East, Europe, and beyond, Maria Enterprise has established a strong international network. We proudly export premium-quality food products to some of the world's most reputable companies.
+                    </p>
+                </div>
+
+                <div class="partners-grid">
+                    <div class="partner-card">
+                        <div class="partner-icon">🇺🇸</div>
+                        <div class="partner-name">BLUE WATER USA INC.</div>
+                        <div class="partner-country">United States</div>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-icon">🇦🇪</div>
+                        <div class="partner-name">AL MUSTHAQEEM FOOD STUFF LLC-SPC</div>
+                        <div class="partner-country">United Arab Emirates</div>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-icon">🇺🇸</div>
+                        <div class="partner-name">DESHI DISTRIBUTORS LLC</div>
+                        <div class="partner-country">United States</div>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-icon">🇨🇦</div>
+                        <div class="partner-name">CK FROZEN FISH AND FOOD CANADA INC.</div>
+                        <div class="partner-country">Canada</div>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-icon">🇨🇦</div>
+                        <div class="partner-name">ARC AERO TEC SOLUTIONS INC.</div>
+                        <div class="partner-country">Canada</div>
+                    </div>
+
+                    <div class="partner-card">
+                        <div class="partner-icon">🇲🇾</div>
+                        <div class="partner-name">GOLD MINE PACKAGING SDN. BHD</div>
+                        <div class="partner-country">Malaysia</div>
+                    </div>
+                </div>
+
+                <p class="regions-text">
+                    Our partnerships extend across Saudi Arabia, Italy, and other key global markets, ensuring seamless trade relationships, bulk consignments, and timely shipments for businesses worldwide.
+                </p>
+            </section>
+        </div>
+
+        <section class="products-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What We Offer – Diverse Export Portfolio</h2>
+                    <p>
+                        As a leading exporter, processor, and agriculturist, Maria Enterprise delivers a wide range of high-quality food products that comply with international standards.
+                    </p>
+                </div>
+
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-icon">🌾</div>
+                        <h3>Food Grains</h3>
+                        <p>Rice, lentils, pulses, wheat</p>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-icon">🐟</div>
+                        <h3>Freshwater & Marine Fish</h3>
+                        <p>Hygienically processed for export</p>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-icon">🍿</div>
+                        <h3>Snacks & Processed Foods</h3>
+                        <p>Ready-to-eat and packaged items</p>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-icon">🌶️</div>
+                        <h3>Spices</h3>
+                        <p>Whole and ground, packed for freshness</p>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-icon">🥬</div>
+                        <h3>Fresh Vegetables</h3>
+                        <p>Farm-fresh and globally shipped</p>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-icon">📦</div>
+                        <h3>Customized Food Commodities</h3>
+                        <p>Tailored to meet client specifications</p>
+                    </div>
+                </div>
+
+                <p class="regions-text">
+                    Whether it's bulk shipments, wholesale consignments, or customized sourcing, we make international trading simple and reliable.
+                </p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="why-choose">
+                <div class="section-header">
+                    <h2>Why Choose Maria Enterprise for Global Trade?</h2>
+                </div>
+
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-check">✔</div>
+                        <div class="feature-text">End-to-End Export Solutions: From sourcing to processing to global shipping.</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-check">✔</div>
+                        <div class="feature-text">International Quality Standards: Certified food safety and compliance.</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-check">✔</div>
+                        <div class="feature-text">Timely Delivery: Efficient logistics for smooth shipment and consignment management.</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-check">✔</div>
+                        <div class="feature-text">Competitive Pricing: Best value without compromising quality.</div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-check">✔</div>
+                        <div class="feature-text">Proven Global Partnerships: Trusted by leading businesses and organizations.</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quality-section">
+                <h2>Quality You Can Trust</h2>
+                <p>
+                    At Maria Enterprise, quality is our identity. We strictly follow international food safety protocols, sustainable sourcing practices, and advanced processing methods. Our vertically integrated operations ensure complete control over the supply chain—resulting in consistency, traceability, and cost efficiency.
+                </p>
+
+                <div class="highlight-text">
+                    <p>
+                        Our credibility has earned us the trust of government agencies, global suppliers, and international organizations, including the <strong>United Nations World Food Programme (WFP)</strong> for large-scale food supply projects, such as feeding programs for the Rohingya community in Ukhiya, Cox's Bazar.
+                    </p>
+                </div>
+
+                <p>
+                    Managing global trade shipments requires precision, experience, and trust. At Maria Enterprise, we handle every export and import consignment with care—from documentation and compliance to packaging and timely dispatch. Our logistics network ensures that your goods reach their destination on time and in perfect condition.
+                </p>
+            </section>
+
+            <div class="cta-section">
+                <h2>Partner with Us – Let's Grow Globally</h2>
+                <p>
+                    We believe that international trade is more than business—it's a partnership for progress. At Maria Enterprise, we invite businesses, distributors, and retailers to collaborate with us and build a strong global supply chain that benefits everyone.
+                </p>
+                <p>
+                    Let's make global trade seamless, efficient, and profitable—together.
+                </p>
+                <a href="contact.html" class="btn">Contact Us Today</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Maria Groups</h3>
+                <p>Leading the industry in construction excellence and innovative development solutions since 1999.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="#works">Portfolio</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#construction">Construction</a>
+                <a href="#commercial">Commercial</a>
+                <a href="#export">Export-Import</a>
+                <a href="#agriculture">Agriculture</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@maria-groups.com</p>
+                <p>Phone: +880 1711-336550</p>
+                <p>Website: www.maria.groups.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Maria | "CopyRight@" MariaGroups</p>
+        </div>
+    </footer>
+</body>
+</html>

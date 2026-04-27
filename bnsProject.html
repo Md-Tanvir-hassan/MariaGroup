@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BNS Project - Maria Groups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            background-color: #e3f1ff;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #0066cc;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #495057;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 8px;
+            top: 100%;
+            margin-top: 0;
+            z-index: 1000;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #495057;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            border-left: 3px solid transparent;  
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: #0066cc;
+            border-left-color: #004ecc;
+            padding-left: 24px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.65rem;
+            margin-left: 4px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            color: white;
+            padding: 180px 3rem 120px;
+            text-align: center;
+            margin-top: 76px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 3rem;
+        }
+
+        .section {
+            margin-bottom: 5rem;
+        }
+
+        .section-intro {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+        }
+
+        .section-intro h2 {
+            font-size: 2.2rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .section-intro p {
+            font-size: 1.1rem;
+            color: #495057;
+            line-height: 1.9;
+            text-align: justify;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: #6c757d;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .supply-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .supply-item {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            border-left: 5px solid #0066cc;
+            transition: all 0.3s;
+        }
+
+        .supply-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .supply-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #0066cc;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .supply-item h3 {
+            font-size: 1.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .supply-item p {
+            font-size: 1.05rem;
+            color: #495057;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .materials-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+            padding-left: 0;
+        }
+
+        .materials-list li {
+            list-style: none;
+            padding: 0.8rem 1rem;
+            background: #f8f9fa;
+            border-radius: 6px;
+            color: #495057;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .materials-list li::before {
+            content: '✓';
+            color: #0066cc;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .trust-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .trust-section h2 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .trust-section p {
+            font-size: 1.15rem;
+            color: #495057;
+            line-height: 1.9;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .other-projects {
+            background: white;
+            padding: 5rem 3rem;
+            margin-top: 5rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 3rem auto 0;
+        }
+
+        .project-card {
+            background: #f8f9fa;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-info {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .project-subtitle {
+            font-size: 0.95rem;
+            color: #6c757d;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            color: white;
+            padding: 5rem 3rem;
+            text-align: center;
+            border-radius: 12px;
+            margin: 4rem auto;
+            max-width: 1200px;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: white;
+            color: #0066cc;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #e9ecef;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #adb5bd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #0066cc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #343a40;
+            color: #adb5bd;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 140px 1.5rem 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+
+            .section-intro,
+            .supply-item {
+                padding: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <header>
+        <nav>
+            <div class="logo">Maria <span>Groups</span></div>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About Us</a>
+                    <div class="dropdown-content">
+                        <a href="speech from chairman.html">Speech from Chairman</a>
+                        <a href="speech from md.html">Speech from MD</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#works">Portfolio</a>
+                    <div class="dropdown-content">
+                        <a href="bnsProject.html">BNS PROJECT</a>
+                        <a href="globalBusinessProject.html">GLOBAL BUSINESS</a>
+                        <a href="humanitarianProject.html">HUMANITARIAN INITIATIVE</a>
+                        <a href="jicaProject.html">JICA PROJECT</a>
+                        <a href="schoolFeedingProgram.html">SCHOOL FEEDING PROGRAM</a>
+                        <a href="solarPowerPlant.html">SOLAR POWER PLANT</a>
+                    </div>
+                </li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>BNS Project Overview</h1>
+                <p>Maria Groups' Strategic Contribution to the BNS Project, Pekua – Cox's Bazar</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="section">
+                <div class="section-intro">
+                    <h2>Our Role in National Defense Infrastructure</h2>
+                    <p>
+                        Maria Groups is honored to be playing a vital role in the development of the Bangladesh Navy's strategic base at Pekua, Cox's Bazar. As part of this landmark national project, our company has been entrusted with multiple responsibilities that contribute to the infrastructure, operational readiness, and overall success of the BNS (Bangladesh Navy Submarine Base) Pekua establishment.
+                    </p>
+                </div>
+
+                <div class="section-header">
+                    <h2>Comprehensive Supply and Construction Support</h2>
+                    <p>
+                        With our reputation for reliability, quality assurance, and logistics excellence, Maria Groups has been awarded several contracts at BNS Pekua, spanning across various domains of material supply and construction support.
+                    </p>
+                </div>
+
+                <div class="supply-grid">
+                    <div class="supply-item">
+                        <div class="supply-number">1</div>
+                        <h3>Supply of Wine Wood in Large Volumes</h3>
+                        <p>
+                            One of our primary roles has been the procurement and supply of high-grade wine wood in bulk quantities. This timber is being used extensively in structural frameworks, interiors, and specialized naval facilities within the base. Our supply chain management ensures timely delivery, consistent quality, and compliance with all naval construction standards.
+                        </p>
+                    </div>
+
+                    <div class="supply-item">
+                        <div class="supply-number">2</div>
+                        <h3>Construction Materials for Infrastructure Development</h3>
+                        <p>
+                            Maria Groups has consistently supplied a broad spectrum of essential building materials required for the development of the naval base. This includes but is not limited to:
+                        </p>
+                        <ul class="materials-list">
+                            <li>High-strength cement</li>
+                            <li>Rebars and steel reinforcements</li>
+                            <li>Bricks and concrete blocks</li>
+                            <li>Sand and aggregates</li>
+                            <li>Waterproofing materials</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">
+                            These materials have supported the construction of residential quarters, command centers, training facilities, storage depots, and other critical infrastructure.
+                        </p>
+                    </div>
+
+                    <div class="supply-item">
+                        <div class="supply-number">3</div>
+                        <h3>Tiles and Interior Finishing</h3>
+                        <p>
+                            We have also supplied premium-quality floor and wall tiles for use across various sectors of the naval base. Whether it's officers' quarters, administrative offices, or recreational buildings, our carefully curated selection of tiles enhances both functionality and aesthetic appeal.
+                        </p>
+                    </div>
+
+                    <div class="supply-item">
+                        <div class="supply-number">4</div>
+                        <h3>Paint and Coating Works</h3>
+                        <p>
+                            Our company has delivered a wide range of painting solutions, including weather-resistant exterior paints and hygienic, washable interior coatings. In addition to supplying, we have been involved in paint application work as per the specific guidelines set by the engineering department of the Bangladesh Navy, ensuring a lasting finish and protective coverage for buildings within the base.
+                        </p>
+                    </div>
+
+                    <div class="supply-item">
+                        <div class="supply-number">5</div>
+                        <h3>Specialized Equipment and Logistic Solutions</h3>
+                        <p>
+                            Beyond construction, Maria Groups has been responsible for sourcing and delivering various project-specific materials and tools required by different wings of the base. Our experience in handling government and defense-related contracts allows us to operate with precision, discretion, and adherence to protocols.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="trust-section">
+                    <h2>A Trusted Partner in National Development</h2>
+                    <p>
+                        Our involvement in the BNS Pekua project is a testament to Maria Groups' growing presence in the infrastructure and defense support sector. We are proud to contribute to a project that strengthens national security while creating opportunities for local economic growth in the Cox's Bazar region.
+                    </p>
+                    <p style="margin-top: 1.5rem;">
+                        As we continue our commitment to excellence, Maria Groups looks forward to deepening our engagement with government and military agencies, delivering quality, consistency, and innovation across every contract we undertake.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+        <section class="other-projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Other Projects</h2>
+                    <p>Successful Business Endeavor around the Globe</p>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card" onclick="window.location.href='globalBusinessProject.html'">
+                        <div class="project-image">🌍</div>
+                        <div class="project-info">
+                            <div class="project-title">Global Business</div>
+                            <div class="project-subtitle">Successful Business Endeavor around the Globe</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="window.location.href='humanitarianProject.html'">
+                        <div class="project-image">🏥</div>
+                        <div class="project-info">
+                            <div class="project-title">Save the Children Specialized Hospital</div>
+                            <div class="project-subtitle">Ukhiya</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="window.location.href='solarPowerPlant.html'">
+                        <div class="project-image">☀️</div>
+                        <div class="project-info">
+                            <div class="project-title">Solar Power Plant</div>
+                            <div class="project-subtitle">Chakaria, Cox's Bazar</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="window.location.href='humanitarianProject.html'">
+                        <div class="project-image">🏕️</div>
+                        <div class="project-info">
+                            <div class="project-title">WFP Project at Rohingya Camp</div>
+                            <div class="project-subtitle">Ukhiya, Cox's Bazar</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="window.location.href='schoolFeedingProgram.html'">
+                        <div class="project-image">🍽️</div>
+                        <div class="project-info">
+                            <div class="project-title">School Feeding Program</div>
+                            <div class="project-subtitle">Primary-Mass Education</div>
+                        </div>
+                    </div>
+
+                    <div class="project-card" onclick="window.location.href='jicaProject.html'">
+                        <div class="project-image">🏗️</div>
+                        <div class="project-info">
+                            <div class="project-title">JICA Project</div>
+                            <div class="project-subtitle">Infrastructure Development</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="cta-section">
+                <h2>Join us in shaping the next collaboration.</h2>
+                <p>
+                    Partner with us to create innovative execution of strategies, drive meaningful engagement, and achieve measurable results. Let's turn your vision into reality—together.
+                </p>
+                <a href="contact.html" class="btn">Get Started</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Maria Groups</h3>
+                <p>Leading the industry in construction excellence and innovative development solutions since 1999.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="#works">Portfolio</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#construction">Construction</a>
+                <a href="#commercial">Commercial</a>
+                <a href="#residential">Residential</a>
+                <a href="#infrastructure">Infrastructure</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@maria-groups.com</p>
+                <p>Phone: +880 1711-336550</p>
+                <p>Website: www.maria.groups.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Maria | "CopyRight@" MariaGroups</p>
+        </div>
+    </footer>
+</body>
+</html>

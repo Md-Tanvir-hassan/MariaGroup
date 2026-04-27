@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Feeding Program - Maria Groups</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: #0066cc;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        header {
+            background: #ffffff;
+            padding: 1.2rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1500px;
+            margin: 0 auto;
+            padding: 0 3rem;
+            background-color: #e3f1ff;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: #0066cc;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: #495057;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 240px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 8px;
+            top: 100%;
+            margin-top: 0;
+            z-index: 1000;
+            border: 1px solid #e9ecef;
+            overflow: hidden;
+        }
+
+        .dropdown-content a {
+            color: #495057;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+            border-left: 3px solid transparent;  
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f8f9fa;
+            color: #0066cc;
+            border-left-color: #004ecc;
+            padding-left: 24px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown > a::after {
+            content: ' ▼';
+            font-size: 0.65rem;
+            margin-left: 4px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+            color: white;
+            padding: 180px 3rem 120px;
+            text-align: center;
+            margin-top: 76px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 3rem;
+        }
+
+        .intro-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+            border-left: 5px solid #f57c00;
+        }
+
+        .intro-section p {
+            font-size: 1.15rem;
+            color: #495057;
+            line-height: 1.9;
+            text-align: justify;
+            margin-bottom: 1.5rem;
+        }
+
+        .coverage-text {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            color: #e65100;
+            margin-top: 1rem;
+        }
+
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+            color: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(245, 124, 0, 0.3);
+            transition: all 0.3s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(245, 124, 0, 0.4);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            font-size: 1.15rem;
+            color: #6c757d;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.9;
+        }
+
+        .program-details {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 4rem;
+        }
+
+        .program-details h3 {
+            font-size: 2rem;
+            color: #f57c00;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .detail-item {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #f57c00;
+        }
+
+        .detail-item h4 {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .detail-item p, .detail-item ul {
+            font-size: 1rem;
+            color: #495057;
+            line-height: 1.8;
+        }
+
+        .detail-item ul {
+            padding-left: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .detail-item li {
+            margin-bottom: 0.5rem;
+        }
+
+        .food-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+
+        .food-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .food-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .food-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .food-name {
+            font-size: 1.2rem;
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+
+        .benefits-section {
+            background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+            padding: 4rem 3rem;
+            border-radius: 12px;
+            margin: 4rem 0;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h4 {
+            font-size: 1.4rem;
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .benefit-card p {
+            font-size: 1rem;
+            color: #495057;
+            line-height: 1.8;
+        }
+
+        .commitment-section {
+            background: white;
+            padding: 4rem 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin: 4rem 0;
+            text-align: center;
+        }
+
+        .commitment-section h2 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .commitment-section p {
+            font-size: 1.15rem;
+            color: #495057;
+            line-height: 1.9;
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .mission-quote {
+            background: linear-gradient(135deg, #f57c00 0%, #e65100 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 12px;
+            margin-top: 3rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+            line-height: 1.8;
+        }
+
+        .partnership {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .partner-logo {
+            font-size: 4rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #0066cc 0%, #004a99 100%);
+            color: white;
+            padding: 5rem 3rem;
+            text-align: center;
+            border-radius: 12px;
+            margin: 4rem auto;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: white;
+            color: #0066cc;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        footer {
+            background: #1a1a1a;
+            color: #e9ecef;
+            padding: 4rem 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: #adb5bd;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #0066cc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #343a40;
+            color: #adb5bd;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 1.5rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .hero {
+                padding: 140px 1.5rem 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .container {
+                padding: 3rem 1.5rem;
+            }
+
+            .stats-section,
+            .food-items,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to content</a>
+    
+    <header>
+        <nav>
+            <div class="logo">Maria <span>Groups</span></div>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li class="dropdown">
+                    <a href="about.html">About Us</a>
+                    <div class="dropdown-content">
+                        <a href="speech from chairman.html">Speech from Chairman</a>
+                        <a href="speech from md.html">Speech from MD</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#works">Portfolio</a>
+                    <div class="dropdown-content">
+                        <a href="bnsProject.html">BNS PROJECT</a>
+                        <a href="globalBusinessProject.html">GLOBAL BUSINESS</a>
+                        <a href="humanitarianProject.html">HUMANITARIAN INITIATIVE</a>
+                        <a href="jicaProject.html">JICA PROJECT</a>
+                        <a href="schoolFeedingProgram.html">SCHOOL FEEDING PROGRAM</a>
+                        <a href="solarPowerPlant.html">SOLAR POWER PLANT</a>
+                    </div>
+                </li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Primary & Mass Education – Feeding Programme</h1>
+                <p>Supporting Education Through Nutritious School Feeding</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="intro-section">
+                <p>
+                    At Maria Groups we are honored to play a vital role in the Government Primary School Feeding Programme, an initiative financed and supervised by the Ministry of Primary and Mass Education, Bangladesh. This national programme is designed to enhance the well-being of young learners by providing them with fresh, hygienic, and nutritious food on a regular basis.
+                </p>
+                <div class="coverage-text">
+                    We proudly supply essential food items to government primary schools across multiple Upazilas, including Bakerganj, Banaripara, Gaurnadi, Hizla, Muladi, Wazirpur, Kathalia, Nalchity, and many others across Bangladesh. Our service coverage ensures that thousands of children receive the nourishment they need to stay healthy, attentive, and motivated in their classrooms.
+                </div>
+            </section>
+
+            <section class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-number">3.13M</div>
+                    <div class="stat-label">Students Covered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">19,419</div>
+                    <div class="stat-label">Primary Schools</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150</div>
+                    <div class="stat-label">Upazilas</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">5 Days</div>
+                    <div class="stat-label">Per Week</div>
+                </div>
+            </section>
+
+            <section>
+                <div class="section-header">
+                    <h2>Nutritious Food Items We Supply</h2>
+                    <p>
+                        Students receive nutritious food items five days a week to support their health and learning
+                    </p>
+                </div>
+
+                <div class="food-items">
+                    <div class="food-card">
+                        <div class="food-icon">🍪</div>
+                        <div class="food-name">Fortified Biscuits</div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-icon">🍞</div>
+                        <div class="food-name">Buns & Bread Rolls</div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-icon">🥚</div>
+                        <div class="food-name">Boiled Eggs</div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-icon">🍌</div>
+                        <div class="food-name">Bananas</div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-icon">🍎</div>
+                        <div class="food-name">Seasonal Fruits</div>
+                    </div>
+                    <div class="food-card">
+                        <div class="food-icon">🥛</div>
+                        <div class="food-name">UHT Milk</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="program-details">
+                <h3>Program Expansion and Features</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <h4>📅 Timeline & Budget</h4>
+                        <p>The government approved a new, expanded program in March 2025 to reintroduce school meals after a temporary end in 2022. The government has allocated <strong>Tk 5,452 crore</strong> for the three-year project, which began in mid-2025.</p>
+                    </div>
+
+                    <div class="detail-item">
+                        <h4>🎯 Target Population</h4>
+                        <p>The upazilas were chosen based on a 2022 poverty mapping survey, focusing on the most food-insecure regions. The program will also cover <strong>Rohingya children</strong> in Cox's Bazar and Bhasan Char.</p>
+                    </div>
+
+                    <div class="detail-item">
+                        <h4>🏛️ Implementation</h4>
+                        <p>The Directorate of Primary Education (DPE) implements the program, with strict monitoring by Upazila Nirbahi Officers (UNOs) to prevent food from being resold.</p>
+                    </div>
+
+                    <div class="detail-item">
+                        <h4>🌾 Local Economic Development</h4>
+                        <p>The program is designed to support local food systems and economies, potentially through procurement from local farmers.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="benefits-section">
+                <div class="section-header">
+                    <h2>Rationale and Benefits</h2>
+                </div>
+
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎓</div>
+                        <h4>Incentivizing Education</h4>
+                        <p>The food serves as an incentive for poor and vulnerable families to send their children to school and keep them enrolled.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🍎</div>
+                        <h4>Improving Nutrition</h4>
+                        <p>Providing fortified snacks and meals helps address high malnutrition rates among students, which can hinder academic performance.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📚</div>
+                        <h4>Boosting Learning</h4>
+                        <p>Well-fed students are less hungry, can concentrate better, and have improved learning abilities. Studies in Bangladesh have linked school feeding to reduced anemia.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📈</div>
+                        <h4>Attendance & Retention</h4>
+                        <p>The program aims to boost school attendance and reduce dropout rates, ensuring children stay in school longer.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="commitment-section">
+                <h2>Our Commitment to Excellence</h2>
+                <p>
+                    We maintain strict quality control measures throughout the supply chain—from sourcing to delivery—to guarantee that every meal is safe, hygienic, and nutritious. Our team works closely with local authorities, schools, and programme supervisors to ensure smooth operations and timely supply.
+                </p>
+
+                <div class="partnership">
+                    <div class="partner-logo">🏛️</div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; color: #1a1a1a; margin-bottom: 0.5rem;">Partnership with MoPME</h3>
+                        <p style="color: #6c757d;">Ministry of Primary and Mass Education, Bangladesh</p>
+                    </div>
+                    <div class="partner-logo">🌍</div>
+                    <div>
+                        <h3 style="font-size: 1.5rem; color: #1a1a1a; margin-bottom: 0.5rem;">WFP Collaboration</h3>
+                        <p style="color: #6c757d;">United Nations World Food Programme</p>
+                    </div>
+                </div>
+
+                <div class="mission-quote">
+                    "Our mission is not just to deliver food but to deliver hope, health, and opportunity for the next generation. By nourishing young learners, we are helping to create a brighter and more resilient Bangladesh."
+                </div>
+            </section>
+
+            <div class="cta-section">
+                <h2>Join Us in Nourishing the Future</h2>
+                <p>
+                    Maria Groups is committed to supporting education and child nutrition across Bangladesh. Partner with us to make a lasting impact.
+                </p>
+                <a href="contact.html" class="btn">Learn More About Our Programs</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Maria Groups</h3>
+                <p>Leading the industry in construction excellence and innovative development solutions since 1999.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="home.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="#works">Portfolio</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-section">
+                <h3>Services</h3>
+                <a href="#feeding">School Feeding Program</a>
+                <a href="#education">Education Support</a>
+                <a href="#nutrition">Nutrition Services</a>
+                <a href="#development">Community Development</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p>Email: info@maria-groups.com</p>
+                <p>Phone: +880 1711-336550</p>
+                <p>Website: www.maria.groups.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Maria | "CopyRight@" MariaGroups</p>
+        </div>
+    </footer>
+</body>
+</html>
